@@ -12,7 +12,12 @@
  */
 package junior1;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -23,17 +28,80 @@ public class Buecherregal {
     int anzahlDekofiguren;
     ArrayList<Integer> buecher;
     ArrayList<ArrayList<Integer>> gruppen;
-    
-    public Buecherregal(){}
-    
-    public Buecherregal(int aDeko, ArrayList<Integer> dieBuecher){
+
+    public Buecherregal() {
+        buecher = new ArrayList();
+    }
+
+    public Buecherregal(int aDeko, ArrayList<Integer> dieBuecher) {
         anzahlDekofiguren = aDeko;
         buecher = dieBuecher;
     }
 
     public void dateiNachAufgabe() {
-        //Anlegen eines Filechoosers zur korrekten Dateiauswahl
-        //Umwandeln der Dateiinhalte in ein Buecherregalobjekt (Anzahl Dekofiguren, ArrayList von Buechergroessen)
+        JFileChooser jfc = new JFileChooser();
+        int returnVal = jfc.showOpenDialog(null);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File f = jfc.getSelectedFile();
+            BufferedReader in = null;
+            try {
+                in = new BufferedReader(new FileReader(f));
+                String zeile = null;
+                int anzahlZeile = 0;
+                while ((zeile = in.readLine()) != null) {
+                    anzahlZeile = anzahlZeile + 1;
+                    System.out.println("Gelesene Zeile: " + zeile);
+                    if (anzahlZeile == 1) { // erste Zeile: Anzahl Dekofiguren
+                        anzahlDekofiguren = Integer.parseInt(zeile);
+                    } else {
+                        if (anzahlZeile != 2) { //zweite Zeile: Anzahl Buecher, Alle weiteren Zeilen sind die Buecherhoehen
+                            buecher.add(Integer.parseInt(zeile));
+                        }
+                    }
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (in != null) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                    }
+                }
+            }
+        }
+    }
+
+    public void dateiNachAufgabeMitDatei(File f) {
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new FileReader(f));
+            String zeile = null;
+            int anzahlZeile = 0;
+            while ((zeile = in.readLine()) != null) {
+                anzahlZeile = anzahlZeile + 1;
+                System.out.println("Gelesene Zeile: " + zeile);
+                if (anzahlZeile == 1) { // erste Zeile: Anzahl Dekofiguren
+                    anzahlDekofiguren = Integer.parseInt(zeile);
+                } else {
+                    if (anzahlZeile > 2) { //zweite Zeile: Anzahl Buecher, Alle weiteren Zeilen sind die Buecherhoehen
+                        buecher.add(Integer.parseInt(zeile));
+                    }
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                }
+            }
+        }
     }
 
     public void gruppiere() {
@@ -41,19 +109,24 @@ public class Buecherregal {
         //In die naechste ArrayList der gruppen als erstes Element einfuegen
         //Minimum merken, aber aus der Buecherliste entfernen
         //Durchgehen aller anderen Buecher und diejenigen, die einen Unterschied von maximal 30mm zum Minimum haben ebenfalls aus der buecherliste entfernen und in die momentane gruppe einfuegen
-        
-        //Wiederholen, bis buecherliste leer
 
+        //Wiederholen, bis buecherliste leer
     }
-    
-    public boolean loesungErlaubt(){
+
+    public boolean loesungErlaubt() {
         //Ist die Anzahl der gruppen hoechstens die Anzahl der dekofiguren+1?
         return false;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         //schoene Ausgabe der Buecher erzeugen
-        String ausgabe="";
+        String ausgabe = "";
         return ausgabe;
+    }
+    
+    public static void main(String[] args){
+        Buecherregal b = new Buecherregal();
+        b.dateiNachAufgabe();
     }
 }

@@ -3,6 +3,7 @@
  */
 package junior1;
 
+import java.io.File;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,6 +39,7 @@ public class BuecherregalTest {
 
     /**
      * Test of dateiNachAufgabe method, of class Buecherregal.
+     * Um den FileChooser zu umgehen, wird die Datei direkt übergeben...
      */
     @Test
     public void testDateiNachAufgabe() {
@@ -56,7 +58,7 @@ public class BuecherregalTest {
         testList1.add(307);
         Buecherregal vergleich = new Buecherregal(4,testList1);
         Buecherregal instance = new Buecherregal();
-        instance.dateiNachAufgabe();
+        instance.dateiNachAufgabeMitDatei(new File("test\\junior1\\buecherregal1.txt"));
         // Hier bitte dann die erste Testdatei einlesen
         assertEquals(vergleich.anzahlDekofiguren,instance.anzahlDekofiguren);
         for (int i=0;i<vergleich.buecher.size();i=i+1){
