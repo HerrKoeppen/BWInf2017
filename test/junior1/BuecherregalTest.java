@@ -3,6 +3,7 @@
  */
 package junior1;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,10 +42,26 @@ public class BuecherregalTest {
     @Test
     public void testDateiNachAufgabe() {
         System.out.println("dateiNachAufgabe");
+        ArrayList<Integer> testList1 = new ArrayList();
+        testList1.add(168);
+        testList1.add(170);
+        testList1.add(202);
+        testList1.add(211);
+        testList1.add(229);
+        testList1.add(233);
+        testList1.add(254);
+        testList1.add(260);
+        testList1.add(272);
+        testList1.add(306);
+        testList1.add(307);
+        Buecherregal vergleich = new Buecherregal(4,testList1);
         Buecherregal instance = new Buecherregal();
         instance.dateiNachAufgabe();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Hier bitte dann die erste Testdatei einlesen
+        assertEquals(vergleich.anzahlDekofiguren,instance.anzahlDekofiguren);
+        for (int i=0;i<vergleich.buecher.size();i=i+1){
+            assertEquals(vergleich.buecher.get(i),instance.buecher.get(i));
+        }
     }
 
     /**

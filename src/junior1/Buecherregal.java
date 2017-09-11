@@ -23,6 +23,13 @@ public class Buecherregal {
     int anzahlDekofiguren;
     ArrayList<Integer> buecher;
     ArrayList<ArrayList<Integer>> gruppen;
+    
+    public Buecherregal(){}
+    
+    public Buecherregal(int aDeko, ArrayList<Integer> dieBuecher){
+        anzahlDekofiguren = aDeko;
+        buecher = dieBuecher;
+    }
 
     public void dateiNachAufgabe() {
         //Anlegen eines Filechoosers zur korrekten Dateiauswahl
