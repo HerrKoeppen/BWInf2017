@@ -73,9 +73,28 @@ public class BuecherregalTest {
     public void testGruppiere() {
         System.out.println("gruppiere");
         Buecherregal instance = new Buecherregal();
+        instance.dateiNachAufgabeMitDatei(new File("test\\junior1\\buecherregal1.txt"));
         instance.gruppiere();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<Integer> testList1 = new ArrayList();
+        testList1.add(168);
+        testList1.add(170);
+        testList1.add(-1);
+        testList1.add(202);
+        testList1.add(211);
+        testList1.add(229);
+        testList1.add(-1);
+        testList1.add(233);
+        testList1.add(254);
+        testList1.add(260);
+        testList1.add(-1);
+        testList1.add(272);
+        testList1.add(-1);
+        testList1.add(306);
+        testList1.add(307);
+        for (int i=0;i<testList1.size();i=i+1){
+            assertEquals(testList1.get(i),instance.gruppen.get(i));
+        }
+        
     }
 
     /**
