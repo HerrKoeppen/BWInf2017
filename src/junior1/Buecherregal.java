@@ -27,10 +27,11 @@ public class Buecherregal {
 
     int anzahlDekofiguren;
     ArrayList<Integer> buecher;
-    ArrayList<ArrayList<Integer>> gruppen;
+    ArrayList<Integer> gruppen;
 
     public Buecherregal() {
         buecher = new ArrayList();
+        gruppen = new ArrayList();
     }
 
     public Buecherregal(int aDeko, ArrayList<Integer> dieBuecher) {
@@ -105,12 +106,10 @@ public class Buecherregal {
     }
 
     public void gruppiere() {
-        //Suchen des Minimums der Buecherliste, dieses markiert den Beginn eines Fachs
-        //In die naechste ArrayList der gruppen als erstes Element einfuegen
-        //Minimum merken, aber aus der Buecherliste entfernen
-        //Durchgehen aller anderen Buecher und diejenigen, die einen Unterschied von maximal 30mm zum Minimum haben ebenfalls aus der buecherliste entfernen und in die momentane gruppe einfuegen
-
-        //Wiederholen, bis buecherliste leer
+        //Begonnen beim Minimum der Liste werden die Buecher elementweise übernommen
+        //Das aktuelle Minimum wird gemerkt
+        //Ist der Unterschied zum Minimum groesser als 30, dann wird eine -1 (als Dekofigur) eingefuegt
+        //Das naechste Buch ist das neue Minimum
     }
 
     public boolean loesungErlaubt() {
