@@ -118,6 +118,7 @@ public class Buecherregal {
             }else{
                 gruppen.add(-1);
                 min=buecher.get(i);
+                i=i-1;
                 
             } 
             
