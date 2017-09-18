@@ -110,8 +110,20 @@ public class Buecherregal {
         //Das aktuelle Minimum wird gemerkt
         //Ist der Unterschied zum Minimum groesser als 30, dann wird eine -1 (als Dekofigur) eingefuegt
         //Das naechste Buch ist das neue Minimum
-    }
 
+        int min = buecher.get(0);
+        for (int i=0; i < buecher.size(); i++) {
+            if(buecher.get(i)<= min+30) {
+                gruppen.add(buecher.get(i));
+            }else{
+                gruppen.add(-1);
+                min=buecher.get(i);
+                
+            } 
+            
+        }
+    }
+// int buecherh : buecher
     public boolean loesungErlaubt() {
         //Ist die Anzahl der gruppen hoechstens die Anzahl der dekofiguren+1?
         return false;
@@ -123,8 +135,8 @@ public class Buecherregal {
         String ausgabe = "";
         return ausgabe;
     }
-    
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         Buecherregal b = new Buecherregal();
         b.dateiNachAufgabe();
     }
